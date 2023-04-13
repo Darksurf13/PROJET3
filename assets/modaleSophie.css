@@ -1,0 +1,299 @@
+
+/*
+body,html {
+    margin:0;
+    padding:0;
+}
+
+*{box-sizing:border-box;} 
+*/
+.modal {  
+/*position:fixed;*/ 
+/* margin:0;
+padding:0; */  
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.4);
+display:flex;
+align-items: center; /* verticalement  y  */
+justify-content:center; 
+border:1px solid black;
+
+
+}
+
+/* contenu de la modal */
+.modal-wrapper {
+    display:flex;
+    flex-direction:column;
+    align-items :center;
+overflow:auto;
+height:731px;
+width:630px;
+/* max-width:calc(100vw - 20px);
+max-height:calc(100vh - 20px);*/
+padding:20px;
+background-color:#FFFFFF;
+border-radius:10px;
+}
+
+/* petite croix pour fermer la modale */
+.js-modal-close {
+    display:flex;
+    flex-direction:row-reverse;
+    align-items:center;
+    width:600px;
+    font-size:12px;
+background-color:#FFFFFF;
+border:/*none;*/;
+/*float:right;*/
+font-weight:bold;
+cursor:pointer;
+border:1px solid black;
+}
+
+.js-modal2-close {
+    display:flex;
+  justify-content:center;
+    align-items:center;
+    width:8px;
+    font-size:12px;
+background-color:#FFFFFF;
+border:/*none;*/;
+font-weight:bold;
+border:1px solid black;
+cursor:pointer;
+}
+
+/* Fermer les 2 modales  */
+.fermerles2 {
+    display:flex;
+    justify-content:center;
+      align-items:center;
+      width:8px;
+      font-size:12px;
+  background-color:#FFFFFF;
+  border:/*none;*/;
+  font-weight:bold;
+  border:1px solid black;
+  cursor:pointer;
+}
+
+
+
+/*.js-modal2-close*/ 
+.enteteModal2 {
+    
+    display:flex;
+   /* flex-direction:row-reverse;*/
+   justify-content:space-between;
+    align-items:center;
+    width:600px;
+    font-size:12px;
+background-color:#FFFFFF;
+border:/*none;*/;
+float:right;
+font-weight:bold;
+border:1px solid black;
+}
+
+.enteteModal2 img {
+    height:14.26px;
+    width:21px;
+
+}
+
+#titlemodal {
+    font-size:26px;
+    font-weight:400;
+}
+
+
+/*les travaux dans la modale  */
+.modalWorks {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    height:auto;    /*344px*/
+    width:378px;
+    border:2px solid red;
+}
+
+ .modalWorks img {
+    width:75px; /*  75px78.12PX*/
+    height:104.08px;
+}
+
+/*.modalWorks img:hover {
+   cursor:pointer;
+   border:4px solid red;
+}  */
+
+.iconeChargeImage {
+    position:;
+    margin-top:28px;
+    width:58px;
+    height:46px;
+    border:2px solid black;
+}
+
+.iconeChargeImage img{
+    width:100%;
+}
+
+
+.editer {
+    font-size:12px;
+    font-weight:400;
+    margin:0;
+}
+
+.barre {
+    height:1px;
+    width:420px;
+    background-color:#B3B3B3;
+
+}
+
+.ajout{
+    height:36px;
+    width:237px;
+    border-radius:60px;
+    color:#FFFFFF;
+    font-size:14px;
+    font-weight:700;
+    background-color:#1D6154;
+    cursor:pointer;
+}
+
+.validerGris {
+    height:36px;
+    width:237px;
+    border-radius:60px;
+    color:#FFFFFF;
+    font-size:14px;
+    font-weight:700;
+    background-color:#A7A7A7;
+    cursor:pointer;
+}
+
+.valider {
+    height:36px;
+    width:237px;
+    border-radius:60px;
+    color:#FFFFFF;
+    font-size:14px;
+    font-weight:700;
+    background-color:#1D6154;
+    cursor:pointer;
+}
+
+.supprimer {
+    color:#D65353;
+    font-size:14px;
+    font-weight:400;
+}
+
+/*---------------------2ièeme modale -------------------------------------------------- -*/
+/*.cadrePhoto {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    height:169px;
+   width:420px;
+   border-radius:3px;
+   border:1px solid black;
+ /*  background-color: #E8F1F6;
+} */
+
+.icone {
+
+}
+
+/* -------------------------------------------------------------------- */
+.card {
+    width:420px;   /* que width : 400px */
+    height: 169px;
+    background:#E8F1F6;
+    border-radius:3px;
+    text-align:center;
+    color:#333;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+   
+}
+
+.conteneurCard {
+    width : 50px;
+    height : 100px;
+    border:4px solid black;
+}
+
+/*.card img {
+    width:420px;
+    height:169px;
+    border-radius:3px;
+} */
+
+.ajouterPhoto  {
+    display:flex;
+    justify-content : center;
+    align-items : center;
+    margin-top:21px;
+height:36px;
+width:173px;
+border-radius:50px;
+background-color: #CBD6DC;
+cursor: pointer;
+}
+
+.formatImage {
+    margin-top : 7px;
+}
+/* -------------------------------------------------------------------- */ 
+
+
+form {
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+}
+/* envoyer une photo */
+
+
+/*.selectWork {
+    border:1px solid red;
+}
+
+.selectWork :hover {
+    cursor:pointer;
+
+    border:2px solid black;
+
+} */
+
+.workElement {
+    position:relative; 
+   /* border:2px solid red; */
+}
+
+
+
+#buttonDelete   {
+    position:absolute;
+    top:8px;
+    right: 8px;
+    width:15px;  /* 9px */
+    height:15px; /*9px */
+ /*   border:2px solid red;*/
+    background: url(icons/trash.jpg);
+    background-size:100%;
+    background-repeat: no-repeat;
+    border-radius:0;
+    cursor:pointer;
+}
+
+
+
+

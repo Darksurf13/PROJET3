@@ -110,16 +110,26 @@ button :hover {
 /* css pour login.js quand Sophie est connectée*/
 .headerConnected {
 	display:flex;
-	flex-direction:row-reverse;
+	/*flex-direction:row-reverse; */
+	justify-content:center;
 	margin: 0 0;
 	height:59px;
 	background-color:black;
 	color:#FFFFFF;
 }
 
+.conteneurHeaderConnected {
+	border:2px solid red;
+	display:flex;
+	width :300px;
+	height: 40px;
+
+
+}
+
 .modeEdition {
 	color:#FFFFFF;
-	margin-left:500px;	
+	/*margin-left:500px; */
 }
 
 .publierLesChangements{
@@ -182,7 +192,7 @@ button :hover {
 
 
 
-
+/* //////////////////////// css d'origine /////////////////////////////////// */
 html, body, div, span, applet, object, iframe,
 margin-right:
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -350,7 +360,7 @@ margin: auto;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"]{
+/*input[type="submit"]{
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -359,7 +369,7 @@ input[type="submit"]{
 	width: 180px;
 	text-align: center;
 	border-radius: 60px ;
-}
+} */
 
 footer nav ul {
 	display: flex;
