@@ -27,8 +27,10 @@ formEl.addEventListener('submit', event => {
   }
   
 else {
+  const passeOublie = document.getElementById('passeOublie');
+  passeOublie.innerText="";
   const erreur = document.createElement('p');
-    erreur.textContent = 'erreur d authentification';
+    erreur.textContent = 'Erreur dans l\'identifiant ou le mot de passe';
     erreur.className = "red";
     form.appendChild(erreur);
 

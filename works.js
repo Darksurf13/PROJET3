@@ -8,35 +8,45 @@ function fetchWorks() {
         .then((data) => {
             if (localStorage.getItem('token')) {
 
-                const header = document.querySelector("header");
-                const navDisparition = document.querySelector("nav");
-                navDisparition.innerHTML = '';
-                const h1Disparition = document.querySelector("h1");
-                h1Disparition.innerHTML = '';
-                const headerConnected = document.querySelector("header");
-                headerConnected.className = "headerConnected";
+                const body = document.querySelector("body");
+                const banniereConnected = document.createElement('div');
+                banniereConnected.className = "headerConnected";
+                body.appendChild(banniereConnected);
 
                 const conteneurHeaderConnected = document.createElement('div');
                 conteneurHeaderConnected.className = "conteneurHeaderConnected";
-                header.appendChild(conteneurHeaderConnected);
+                banniereConnected.appendChild(conteneurHeaderConnected);
 
                 const iconModeEdition = document.createElement('img');
                 iconModeEdition.src = "assets/icons/modeEdition.jpg";
-                //iconModeEdition.className = "modeEdition";
+                iconModeEdition.style.width = '20px';
+                iconModeEdition.className = "modeEdition";
+                // iconModeEditionDimension.style.width = '20px';
                 conteneurHeaderConnected.appendChild(iconModeEdition);
 
                 const modeEdition = document.createElement('p');
-                modeEdition.textContent = "mode édition";
-                modeEdition.className = "modeEdition";
+                modeEdition.textContent = "Mode édition";
+                modeEdition.className = "modeEditionP";
                 conteneurHeaderConnected.appendChild(modeEdition);
-                /* modeEdition.className="headerConnected";*/
 
-                const publierLesChangements = document.createElement('article');
+                const publierLesChangements = document.createElement('p');
                 publierLesChangements.textContent = "publier les changements";
                 publierLesChangements.className = "publierLesChangements";
                 conteneurHeaderConnected.appendChild(publierLesChangements);
-                /* modeEdition.className="headerConnected";*/
 
+                const header = document.querySelector("header");
+                header.style.marginTop = "97px";
+
+                // remplace le login pour logout et changer le lien
+                const login = document.getElementById('login');
+                login.innerText = "logout";
+                login.href = "";
+
+                //je me déconnecte
+                login.addEventListener('click', function (e) {
+                    e.preventDefault;
+                    localStorage.removeItem('token');
+                })
 
                 //  code de modale.js /////////////////////////////////////////////////////////////////////////////////////////////////////////
                 let modal = null;
@@ -49,8 +59,8 @@ function fetchWorks() {
                     modal.removeAttribute('aria-hidden');
                     modal.setAttribute('aria-modal', 'true');
                     document.getElementById('js-modal-close').addEventListener('click', closeModal)
-                    //pour fermer la modale j
-                    // modal.addEventListener('click',closeModal);
+                    //pour fermer la modale en dehors de celle-ci
+                    modal.addEventListener('click', closeModal);
                     modal.querySelector('.js-modal-stop').addEventListener('click', stopPropagation)
                 };
 
@@ -61,7 +71,7 @@ function fetchWorks() {
                     modal.style.display = "none";
                     modal.removeAttribute('aria-hidden', 'true');
                     modal.setAttribute('aria-modal', 'false');
-                    // modalquerySelector('js-modal-stop').removeListener('click',stopPropagation);
+                    modal.querySelector('js-modal-stop').removeListener('click', stopPropagation);
                     modal = null;
                 };
 
@@ -90,39 +100,39 @@ function fetchWorks() {
                     modal2.style.display = null;
                     modal2.removeAttribute('aria-hidden');
                     modal2.setAttribute('aria-modal', 'true');
-                    //bouton X à roite pour fermer les 2 modales
+                    //bouton X à droite pour fermer les 2 modales
                     modal2.querySelector('.fermerles2').addEventListener('click', fermerLes2);
                     modal2.querySelector('.js-modal2-stop').addEventListener('click', stopPropagation);
                     //flèche pour revenir à la 1ière modale
                     modal2.querySelector('.js-modal2-close').addEventListener('click', closeModal2);
-                    
 
-// on réinitialise le formulaire chaque fois qu'on réouvre la modale
-                    document.getElementById("myForm").reset();
+                    //pour fermer la modale 2 en dehors de celle-ci
+                    modal2.addEventListener('click', closeModal2);
+                    modal2.querySelector('.js-modal2-stop').addEventListener('click', stopPropagation);
 
-                    const valider = document.getElementById ('valider');
-                  
 
+                    // on réinitialise le formulaire chaque fois qu'on réouvre la modale
+                    //  document.getElementById("myForm").reset();
+
+                    // const valider = document.getElementById ('valider');
                     //  changement de la couleur de valider en vert si tous les champs sont remplis
                     document.getElementById("myForm").addEventListener("change", verif);
-
                     function verif() {
-                      
                         let inputFile = document.getElementById("input-file");
-                        const image = inputFile.files[0]; // document.getElementById("input-file").files[0];  //files[0] : retourne undefined
+                        const image = inputFile.files[0];
                         const title = document.getElementById("title").value;
                         const category = document.getElementById("category").value; //faut que ce soit entre 1 et 3
-        
-                        const valider = document.getElementById ('valider');
-                          // si au moins 1 des champs est  vide : valider est en gris, vert le cas échéant lors
-                          //du chargement de la modale 2  !!!!
-                        if(image == undefined || title =='' || category =='') {
+
+                        const valider = document.getElementById('valider');
+                        // si au moins 1 des champs est  vide : valider est en gris, vert le cas échéant lors
+                        //du chargement de la modale 2  !!!!
+                        if (image == undefined || title == '' || category == '') {
                             valider.className = "validerGris";
                             //valider.style.backgroundColor = '#A7A7A7';  // gris
                         }
                         else {
                             valider.className = "valider";
-                           // valider.style.backgroundColor = '#1D6154';;  //vert
+                            // valider.style.backgroundColor = '#1D6154';;  //vert
                         }
                     }
 
@@ -136,6 +146,7 @@ function fetchWorks() {
                     modal2.setAttribute('aria-modal', 'false');
                     modal2 = null;
                     document.getElementById("myForm").reset();
+                    document.getElementById("profile-pic").reset();
                 };
 
                 const fermerLes2 = function (e) {
@@ -161,34 +172,23 @@ function fetchWorks() {
                 let profilePic = document.getElementById("profile-pic");
                 let inputFile = document.getElementById("input-file");
 
-                let iconeChangeImage = document.getElementsByClassName("iconeChangeImage");
-                let ajouterPhoto = document.getElementsByClassName("ajouterPhoto");
-                let formatImage = document.getElementsByClassName("formatImage");
+                let iconeChargeImage = document.getElementById('iconeChargeImage');
+                let ajouterPhoto = document.getElementById('ajouterPhoto');
+                let formatImage = document.getElementById('formatImage');
+
                 inputFile.onchange = function () {
                     profilePic.src = URL.createObjectURL(inputFile.files[0]);
                     console.log("image téléchargée :", profilePic.src);  // donne une image blob qui est un objet
                     profilePic.style.display = null;
-                    iconeChangeImage.style.display = "none";
+                    iconeChargeImage.style.display = "none";
                     ajouterPhoto.style.display = "none";
                     formatImage.style.display = "none";
                 }
-
-
                 ////////////////////////////fin 2ième modale////////////////////////////////////////////////////////////
                 //////////////////////////////////envoie d4un nouveau projetE//////////////////////////////////////////////////////////////////////////////////////////////
                 //const formModale = document.getElementById('formModale');
-function colorSubmit() {
-  
-               
-              
-
-};
-colorSubmit();
-
-                
-                const form = document.querySelector('form');
-                console.log("form");  // ça ne me l'affichait pas avec le getElementById sur form
-                form.addEventListener("submit", function (e) {
+                const button = document.getElementById('valider');
+                button.addEventListener("click", function (e) {
                     e.preventDefault();
                     console.log(inputFile.files[0]);
                     const image = inputFile.files[0]; // document.getElementById("input-file").files[0];  //files[0] : retourne undefined
@@ -197,14 +197,9 @@ colorSubmit();
                     console.log("image", image); //ok
                     const imageUrl = JSON.stringify(image);  //imageBlob.map(imageBlob => imageBlob.blob);
                     console.log("image", imageUrl.blob); //  ya les guillements car objet json
-
                     console.log("title", title); //ok
                     console.log("categoryId", category); //ok
-
-                   
-                   
-
-                    const files = File;
+                   // const files = File;
 
                     //const file = document.querySelector('#image');
                     const formData = new FormData();  // form ou pas dans la parenthèse? sans: il y a que 3 entrées
@@ -213,9 +208,6 @@ colorSubmit();
                     formData.append('category', category);
                     console.log("formData", formData);
                     const token = localStorage.getItem('token');
-
-                    // const res = Object.fromEntries(formData);
-                    //const payload = JSON.stringify(res);
 
                     fetch('http://localhost:5678/api/works', {
                         method: 'POST',
@@ -228,36 +220,9 @@ colorSubmit();
                     })
                         .then((resp) => resp.json())
                         .then((response) => (console.log(response)))  //  pour voir ce que ça donne
-
-                    /*{
-                        if(response.ok) {
-                            alert("un nouveau projet  a été envoyé avec succes");
-                            // actualiser la galerie e projets
-                            window.location.reloaded();
-                        } 
-                        else if(response.statuts == "400") {
-                            return alert ("Bad Request")
-                        }
-                        else if(response.statuts == "401") {
-                            return alert ("UnAuthorized")
-                        }
-                        else if(response.statuts == "500") {
-                            return alert ("unexpected error")
-                        }
-                                 
-                            else {
-                            alert('une erreur est survenue')
-                            console.log('une erreur est survenue')
-                           
-                        }})
-                    .catch (error=> console.log(error))
-                    })
-                    */
-                    /////////////////////////////////////////fin Eenvoie FORMULAIRE/////////////////////////////////////////////////////////////////////////////////////////
-
                 })
                 genererWorks(works);
-                deleteWork(works) ;
+                deleteWork(works);
             }
             else {
                 works = data;
@@ -268,11 +233,8 @@ colorSubmit();
             }
         })
 }
-
-
 /////////////////////////ça c'est juste pour 1 travail  j'utilise une boucle for pour générer tous les travaux///////////////////////////////////////////////
 function genererWorks(works) {
-    //const works = await fetch ("http://localhost:5678/api/works")
     console.log(works);
     // Récupération de l'élément du DOM qui accueillera les travaux
     const divGallery = document.querySelector(".gallery");
@@ -298,22 +260,19 @@ function genererWorksModal(works) {
     console.log(works);
     // Récupération de l'élément du DOM qui accueillera les travaux
     const divGallery = document.querySelector(".modalWorks");
-
     for (let i = 0; i < works.length; i++) {
         const work = works[i];
-        console.log(work); 
+        console.log(work);
         // Création d’une balise dédiée à un travail : il y en a 11 en tout
         const workElement = document.createElement("article");
         workElement.className = "workElement";
         // Création des balises 
         const imageUrlElement = document.createElement("img");
         imageUrlElement.src = work.imageUrl;
-      
-// création du boutton Delete sur chaque image
+        // création du boutton Delete sur chaque image
         const buttonDelete = document.createElement('button');
         buttonDelete.id = "buttonDelete";
         workElement.appendChild(buttonDelete);
-
         const editer = document.createElement("p");
         editer.innerText = "éditer";
         editer.className = "editer";
@@ -321,37 +280,33 @@ function genererWorksModal(works) {
         divGallery.appendChild(workElement);
         workElement.appendChild(imageUrlElement);
         workElement.appendChild(editer);
-
     };
-
 };
-
 
 function deleteWork(works) {
     const iconDeleteWork = document.querySelectorAll('#buttonDelete');
-  //  let id = 0;
-    for (let i = 0; i < iconDeleteWork.length ; i++) {
+    //  let id = 0;
+    for (let i = 0; i < iconDeleteWork.length; i++) {
         iconDeleteWork[i].addEventListener('click', function (e) {
             e.preventDefault();
             const workId = works.map(work => work.id);
             console.log(workId);  // ok on a que des ids
-          
-          const id = workId [i];
-           console.log(id);  //donne l'id du work dont je clique dessus
+            const id = workId[i];
+            console.log(id);  //donne l'id du work dont je clique dessus
             const token = localStorage.getItem('token');
-            fetch(`http://localhost:5678/api/works/${id}`, {  
+            fetch(`http://localhost:5678/api/works/${id}`, {
                 method: "DELETE",
                 headers: {
-                    "content-Type": "application/json",  
+                    "content-Type": "application/json",
                     "accept": "application/json",
                     'Authorization': `Bearer ${token}`
-                }}  )
-
-               .then(resp => console.log(resp))
-               .catch(error => console.log(error));
-               })
-               }};
-              
+                }
+            })
+                .then(resp => console.log(resp))
+                .catch(error => console.log(error));
+        })
+    }
+};
 
 function addFilterButton(works) {
     const filters = document.querySelector(".filtres")
@@ -360,7 +315,6 @@ function addFilterButton(works) {
     console.log(categoryIds);
     const filtredCategoryIds = Array.from(new Set(categoryIds))
     console.log(filtredCategoryIds);  // retourne 3 catégories donc
-
     const buttonAll = document.createElement('button');
     buttonAll.textContent = 'Tous';
     buttonAll.id = "all";
@@ -373,7 +327,6 @@ function addFilterButton(works) {
     })
     buttonAll.className = "hover";  // ou  buttonAll.classList.add ('filter')
     filters.appendChild(buttonAll); // rattache le bouton à la classe filtres
-
     filtredCategoryIds.forEach(categoryId => {  // pour chaque catégorie trouvé, on crée un bouton
         const button = document.createElement('button');
         button.className = "filter";  // ou  button.classList.add ('filter')
@@ -387,9 +340,7 @@ function addFilterButton(works) {
         })
         filters.appendChild(button);
     });
-
 };
-
 
 function colorSelectedButton() {  // les boutons restent appuyés en rouge
     console.log(idCategorySelected);
@@ -398,18 +349,9 @@ function colorSelectedButton() {  // les boutons restent appuyés en rouge
         const btn = document.getElementById("all");  //  all = bouton.id
         btn.className = "filter";  // le 1er bouton = buttonAll reste appuyé rouge
     }
-    /*else {
-        const otherButton = document.querySelector('[category="'+idCategorySelected+'"]')  // sélectionne les buttonAll
-        otherButton.className = "red";   // les autres boutons = button restent appuyé rouge
-        btn.className.remove("red)")
-    }*/
 };
 
-
 fetchWorks();
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-//Afficher une image dans la modale
 
 
 

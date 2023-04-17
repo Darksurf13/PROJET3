@@ -17,7 +17,7 @@ background:rgba(0,0,0,0.4);
 display:flex;
 align-items: center; /* verticalement  y  */
 justify-content:center; 
-border:1px solid black;
+/*border:1px solid black; */
 
 
 }
@@ -27,29 +27,40 @@ border:1px solid black;
     display:flex;
     flex-direction:column;
     align-items :center;
-overflow:auto;
-height:731px;
+overflow:scroll;
+height:90%;  /* 731px */
 width:630px;
 /* max-width:calc(100vw - 20px);
 max-height:calc(100vh - 20px);*/
+margin-top:-200px;
 padding:20px;
 background-color:#FFFFFF;
 border-radius:10px;
 }
 
+.conteneurModalClose {
+    display:flex;
+    flex-direction:row-reverse;
+    align-items:;
+    width:558px;  /* 630-36-36 */
+    height:76px; /* 32 + 32 + 12 */
+
+}
+
 /* petite croix pour fermer la modale */
 .js-modal-close {
     display:flex;
-    flex-direction:row-reverse;
+    justify-content:center;
     align-items:center;
-    width:600px;
+    width:10px;
+    height:76px; /* 32 + 32 + 12 */
     font-size:12px;
 background-color:#FFFFFF;
-border:/*none;*/;
+border:none;
 /*float:right;*/
 font-weight:bold;
 cursor:pointer;
-border:1px solid black;
+
 }
 
 .js-modal2-close {
@@ -61,7 +72,6 @@ border:1px solid black;
 background-color:#FFFFFF;
 border:/*none;*/;
 font-weight:bold;
-border:1px solid black;
 cursor:pointer;
 }
 
@@ -73,9 +83,8 @@ cursor:pointer;
       width:8px;
       font-size:12px;
   background-color:#FFFFFF;
-  border:/*none;*/;
+  border:none;
   font-weight:bold;
-  border:1px solid black;
   cursor:pointer;
 }
 
@@ -94,34 +103,46 @@ background-color:#FFFFFF;
 border:/*none;*/;
 float:right;
 font-weight:bold;
-border:1px solid black;
 }
 
 .enteteModal2 img {
     height:14.26px;
     width:21px;
-
 }
 
 #titlemodal {
     font-size:26px;
     font-weight:400;
+    margin-top:-16px;
 }
 
 
 /*les travaux dans la modale  */
-.modalWorks {
-    display:flex;
+section .modalWorks {
+  /*  display:flex;
     flex-wrap:wrap;
-    justify-content:space-between;
+    justify-content:space-between; */
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-column-gap: 6.23px;
+	grid-row-gap: 10.55px;
+
     height:auto;    /*344px*/
-    width:378px;
-    border:2px solid red;
+    width:420px;
+    margin-top:46px;
 }
 
  .modalWorks img {
     width:75px; /*  75px78.12PX*/
     height:104.08px;
+}
+
+.ajoutPhoto {
+    font-size:26px;
+    font-weight:400;
+    font-family: Work Sans;
+    margin-bottom:36px;
+    margin-top:38px;
 }
 
 /*.modalWorks img:hover {
@@ -134,7 +155,6 @@ border:1px solid black;
     margin-top:28px;
     width:58px;
     height:46px;
-    border:2px solid black;
 }
 
 .iconeChargeImage img{
@@ -146,16 +166,24 @@ border:1px solid black;
     font-size:12px;
     font-weight:400;
     margin:0;
+    margin-bottom:12.64px;
 }
 
 .barre {
     height:1px;
     width:420px;
     background-color:#B3B3B3;
-
 }
 
-.ajout{
+.barreModal2 {
+    height:1px;
+    width:420px;
+    background-color:#B3B3B3;
+    margin-top:47px;
+    margin-bottom: 38px;
+}
+
+.ajout{ /* boutton de la 1ière modale */
     height:36px;
     width:237px;
     border-radius:60px;
@@ -164,8 +192,31 @@ border:1px solid black;
     font-weight:700;
     background-color:#1D6154;
     cursor:pointer;
+    margin-top:38px;
+    margin-bottom:23px;
 }
 
+.labelModal21 {
+    font-size:14px;
+    font-weight:500;
+    font-family:Work sans;
+    color:#3D3D3D;
+    margin-left:-390px;
+    margin-bottom:10px;
+}
+
+.labelModal22 {
+    font-size:14px;
+    font-weight:500;
+    font-family:Work sans;
+    color:#3D3D3D;
+    margin-top:21px;
+    margin-left:-357px;
+    margin-bottom:10px;
+}
+
+
+/*       bouton submit modale 2 */
 .validerGris {
     height:36px;
     width:237px;
@@ -175,6 +226,7 @@ border:1px solid black;
     font-weight:700;
     background-color:#A7A7A7;
     cursor:pointer;
+    margin-bottom :55px;
 }
 
 .valider {
@@ -186,12 +238,14 @@ border:1px solid black;
     font-weight:700;
     background-color:#1D6154;
     cursor:pointer;
+    margin-bottom :55px;
 }
 
 .supprimer {
     color:#D65353;
     font-size:14px;
     font-weight:400;
+    margin-bottom:48px;
 }
 
 /*---------------------2ièeme modale -------------------------------------------------- -*/
@@ -221,6 +275,7 @@ border:1px solid black;
     display:flex;
     flex-direction:column;
     align-items: center;
+    margin-bottom:30px;
    
 }
 
@@ -244,12 +299,19 @@ border:1px solid black;
 height:36px;
 width:173px;
 border-radius:50px;
+font-family:Work Sans;
+font-size:14px;
+font-weight:500;
+color:#306685;
 background-color: #CBD6DC;
 cursor: pointer;
 }
 
 .formatImage {
     margin-top : 7px;
+    font-size:10px;
+    font-weight:400;
+    color: #444444;
 }
 /* -------------------------------------------------------------------- */ 
 
@@ -272,6 +334,14 @@ form {
     border:2px solid black;
 
 } */
+
+.title_formulaire {
+    width:420px;
+    height:51px;
+    border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
 
 .workElement {
     position:relative; 

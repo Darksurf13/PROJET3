@@ -22,10 +22,10 @@
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
 		<nav>
-			<ul>
+			<ul id="menu">
 				<li>projets</li>
 				<li>contact</li>
-				<li><a href="login.html">login</a></li>
+				<li><a href="login.html" id="login">login</a></li>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 		</nav>
@@ -34,6 +34,11 @@
 		<section id="introduction">
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="">
+				<div class="modifierPhoto">
+					<img src="./assets/icons/modeEditionBlanc.jpg"
+						style="width:14.87px; height:14.87px;margin-left:53px;margin-right:11.87px">
+					<p style="margin-bottom:0"> modifier</p>
+				</div>
 			</figure>
 			<article>
 				<h2>Designer d'espace</h2>
@@ -45,79 +50,74 @@
 				<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
 					décorateur(trice)</p>
 			</article>
-
 		</section>
 		<section id="portfolio">
 
-
-
-
-			<a href="#modal1" class="js-modal"> modifier</a>
-			<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-modal="false"
-				arial-latelledby="titlemodal" style="display:none">
-				<div class="modal-wrapper  js-modal-stop">
-					<button id="js-modal-close" class="js-modal-close">X</button>
-					<p id="titlemodal"> Galerie photo </p>
-					<section id="modalWorks" class="modalWorks"></section>
-					<hr class="barre">
-					</hr>
-
-					<a href="#modal2" class="js-modal2">
-						<button id="ajout" class="ajout"> Ajouter une photo</button>
-					</a>
-					<aside id="modal2" class="modal" aria-hidden="true" role="dialog" aria-modal="false"
-						arial-latelledby="titlemodal" style="display:none">
-						<div id="modalAjout" class="modal-wrapper js-modal2-stop">
-
-							<div class="enteteModal2">
-								<img class="js-modal2-close" src="assets/icons/Capture d’écran 2023-04-03 114824.jpg">
-								<button class="fermerles2"> X </button>
-							</div>
-							<p> Ajouter une photo</p>
-							<br>
-
-
-							<form onsubmit="return false" id="myForm">
-								<div class="card">
-									<!-- 	<div class="conteneurCard"> -->
-									<img id="profile-pic" src=""
-										style="width:420px; height:169px; display:none; border-radius:3px">
-									<div class="iconeChargeImage">
-										<img src="assets/icons/iconeChargeImage.jpg">
-									</div>
-									<label for="input-file" class="ajouterPhoto"> + Ajouter photo</label>
-									<input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file"
-										style="display:none" name="image">
-									<p class="formatImage">jpg, png: 4mo max</p>
-									<!-- 	</div>  -->
-								</div>
-
-								<label for="text">titre</label>
-								<input type="text" id="title" name="title" class="title_formulaire">
-
-								<br>
-								<br>
-
-								<label for="text">catégorie</label>
-								<!--  <input type="text" id="category" name="category" class="category_formulaire">  -->
-								<select name="languages"  id="category" style="background-color:#FFFFFF">
-									<option  value="" default=""> </option>
-									<option id="1" value="1">Objets</option>
-									<option id="2" value="2">Appartements</option>
-									<option id="3" value="3">Hotels & restaurants</option>
-								</select>
-								<input type="submit"  value="Valider" id="valider" class="validerGris">  <!-- class="ajout" -->
-							</form>
-
+			<h2 id="mesProjets">Mes Projets
+				<img src="./assets/icons/modeEditionBlanc.jpg" style="width:14.87px; height:14.87px">
+				<a href="#modal1" class="js-modal"> modifier</a>
+				<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-modal="false"
+					arial-latelledby="titlemodal" style="display:none">
+					<div class="modal-wrapper  js-modal-stop">
+						<div class="conteneurModalClose"><button id="js-modal-close" class="js-modal-close">X</button>
 						</div>
-					</aside>
-
-					<p class="supprimer">Supprimer la galerie</p>
-				</div>
-			</aside>
-
-			
-			<h2 id="mesProjets">Mes Projets</h2>
+						<p id="titlemodal"> Galerie photo </p>
+						<section id="modalWorks" class="modalWorks"></section>
+						<hr class="barre">
+						</hr>
+						<!-- -------------- 2ième modale------------------>
+						<a href="#modal2" class="js-modal2">
+							<button id="ajout" class="ajout"> Ajouter une photo</button>
+						</a>
+						<aside id="modal2" class="modal" aria-hidden="true" role="dialog" aria-modal="false"
+							arial-latelledby="titlemodal" style="display:none">
+							<div id="modalAjout" class="modal-wrapper js-modal2-stop">
+								<div class="enteteModal2">
+									<img class="js-modal2-close"
+										src="assets/icons/Capture d’écran 2023-04-03 114824.jpg">
+									<button class="fermerles2"> X </button>
+								</div>
+								<p class="ajoutPhoto"> Ajout photo</p>
+								<br>
+								<form  id="myForm">
+									<div class="card">
+										<img id="profile-pic" src=""
+											style="width:420px; height:169px; display:none; border-radius:3px">
+										<div class="iconeChargeImage" id="iconeChargeImage">
+											<img src="assets/icons/iconeChargeImage.jpg">
+										</div>
+										<label for="input-file" class="ajouterPhoto" id="ajouterPhoto"> + Ajouter
+											photo</label>
+										<input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file"
+											style="display:none" name="image">
+										<p class="formatImage" id="formatImage">jpg, png: 4mo max</p>
+										<!-- 	</div>  -->
+									</div>
+									<label for="text" class="labelModal21">titre</label>
+									<input type="text" id="title" name="title" class="title_formulaire">
+									<br>
+									<br>
+									<label for="text" class="labelModal22">catégorie</label>
+									<!--  <input type="text" id="category" name="category" class="category_formulaire">  -->
+									<select name="languages" id="category" style="background-color:#FFFFFF"
+										class="title_formulaire">
+										<option value="" default=""> </option>
+										<option id="1" value="1">Objets</option>
+										<option id="2" value="2">Appartements</option>
+										<option id="3" value="3">Hotels & restaurants</option>
+									</select>
+									<hr class="barreModal2">
+									</hr>
+									<input type="button" value="Valider" id="valider" class="validerGris">
+									<!-- class="ajout" -->
+								</form>
+							</div>
+						</aside>
+						<!-- --------------fin 2ième modale------------------>
+						<p class="supprimer">Supprimer la galerie</p>
+					</div>
+				</aside>
+			</h2>
 			<section class="filtres">
 				<h3><!--Filtrer les travaux par catégorie --></h3>
 				<div class="category"></div>
@@ -169,8 +169,6 @@
 				</figure>
 			</div>
 		</section>
-
-
 		<section id="contact">
 			<h2>Contact</h2>
 			<p>Vous avez un projet ? Discutons-en !</p>
@@ -181,11 +179,10 @@
 				<input type="email" name="email" id="email">
 				<label for="message">Message</label>
 				<textarea name="message" id="message" cols="30" rows="10"></textarea>
-				<input type="submit" value="Envoyer">
+				<input type="submit" value="Envoyer" id="envoyer">
 			</form>
 		</section>
 	</main>
-
 	<footer>
 		<nav>
 			<ul>
@@ -193,8 +190,5 @@
 			</ul>
 		</nav>
 	</footer>
-
-
 </body>
-
 </html>

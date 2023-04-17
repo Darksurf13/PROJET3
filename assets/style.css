@@ -5,10 +5,21 @@
 
 
 /*rajout par moi meme  */
+a:visited {
+	color:black;
+}
+
+.banniereConnected {
+	width : 500px;
+	height : 40px;
+	border:3px solid red
+}
+
 .filter {
 	color:#1D6154;
 	background-color:#FFFFFF;
 	width:135px;
+	cursor:pointer;
 }
 
 .filter:hover{
@@ -112,32 +123,57 @@ button :hover {
 	display:flex;
 	/*flex-direction:row-reverse; */
 	justify-content:center;
-	margin: 0 0;
+	align-items : center;
+	margin: 0;
+	margin-top : -3614px;   /* 97-59 = 38 --> 3480+38 */
+	/*margin-bottom :20px;*/
+	margin-left:-70px;
 	height:59px;
+	width: 1275px;  /*  rajout 70px*2 à 1170 auto */
 	background-color:black;
 	color:#FFFFFF;
+
 }
 
 .conteneurHeaderConnected {
-	border:2px solid red;
+
 	display:flex;
-	width :300px;
+	justify-content : ;
+	align-items : center;
+	width :373px; /* 20 + 12.3 + 102 + 21 + 218 = 373 */
 	height: 40px;
 
 
 }
 
-.modeEdition {
+ .modeEdition  {
 	color:#FFFFFF;
+	width : 20px;
+	height : 20px;
+	
+	/*margin-left:500px; */
+}
+
+.modeEditionP  {
+	color:#FFFFFF;
+	width : 102px;
+	margin-left:12.3px;
 	/*margin-left:500px; */
 }
 
 .publierLesChangements{
+	display:flex;
+	justify-content : center;
+	align-items:center;
 	height: 38px;
 	width: 216px;
+	margin-left:21px;
 	color:black;
 	background-color:#FFFFFF;
 	border-radius:60px;
+	font-size:14px;
+	font-weight : 500;
+	font-family : Work Sans;
 }
 
 
@@ -180,21 +216,10 @@ button :hover {
 	text-decoration: none;
 	cursor: pointer;
   }
-	
-
-
-
- 
-
-
-
-
-
-
 
 /* //////////////////////// css d'origine /////////////////////////////////// */
 html, body, div, span, applet, object, iframe,
-margin-right:
+
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -247,7 +272,8 @@ body {
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 50px 0;
+
 }
 section {
 	margin: 50px 0
@@ -312,10 +338,32 @@ li:hover {
 #introduction p {
 	margin-bottom: 0.5em;
 }
+
+.modifierPhoto {
+
+	display:flex;
+	justify-content:flex-start;
+	margin-top:16px;
+	align-items:center;
+}
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
+	/*display:flex; */
 }
+/*#portfolio h2  img {
+	width:14.87px;
+	height:14.87px;
+	margin-left:31px;
+	margin-right:11.13px;
+} */
+
+#portfolio h2  .js-modal {
+	font-size:14px;
+	font-weight:400;
+	font-family :Work Sans;
+}
+
 .gallery {
 	width: 100%;
 	display: grid;
@@ -328,6 +376,7 @@ li:hover {
 	width: 100%;
 
 }
+/* Formulaire de contact sur la page index.html */
 #contact {
 	width: 50%;
 margin: auto;
@@ -347,6 +396,7 @@ margin: auto;
 }
 
 #contact input {
+	width:379px; 
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
@@ -356,21 +406,87 @@ margin: auto;
 	margin: 2em 0 1em 0;
 }
 #contact textarea {
+	width:379px;
+	height:174px;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-/*input[type="submit"]{
+/* page de connexion */
+#loginGras  {
+	font-weight:600;
+}
+
+
+/* Formulaire de connexion sur la page index.html */
+#connexion {
+	width: 50%;
+margin: auto;
+}
+#connexion > * {
+	text-align: center;
+
+}
+#connexion h2{
+	margin-bottom: 20px;
+}
+#connexion form {
+	text-align: left;
+	height : 348.5px;/* 568 +5.6 */
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+	align-items:center;
+	/*border:1px solid red; */
+}
+
+#connexion input {
+	width:379px; 
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+/*#connexion label {
+	margin: 2em 300px 1em 0;
+} */
+
+#eMail {
+	margin: 2em 340px 1em 0;
+}
+
+#motPasse {
+	margin: 2em 290px 1em 0;
+}
+
+#connexion textarea {
+	width:379px;
+	height:174px;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.passeOublie {
+	text-decoration-line: underline;
+}
+
+
+input[type="submit"]{
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
-	background-color: #1D6154;
 	margin : 2em auto ;
 	width: 180px;
 	text-align: center;
 	border-radius: 60px ;
-} */
+} 
 
+#envoyer, #seConnecter {
+	background-color: #1D6154;  
+}
+
+
+/* pied de page */
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
