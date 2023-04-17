@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
 	<meta charset="UTF-8">
 	<title>Sophie Bluel - Architecte d'intérieur</title>
@@ -14,13 +13,10 @@
 	<link rel="stylesheet" href="./assets/style.css">
 	<link rel="stylesheet" href="./assets/modaleSophie.css">
 	<script type="module" src="works.js"></script>
-	<!--<script type="module" src="ajoutProjet.js"></script>  -->
-
 </head>
-
 <body>
 	<header>
-		<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
 			<ul id="menu">
 				<li>projets</li>
@@ -34,10 +30,10 @@
 		<section id="introduction">
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="">
-				<div class="modifierPhoto">
-					<img src="./assets/icons/modeEditionBlanc.jpg"
-						style="width:14.87px; height:14.87px;margin-left:53px;margin-right:11.87px">
-					<p style="margin-bottom:0"> modifier</p>
+				<div class="modifierPhoto" id="modifierPhoto">
+					<img src="./assets/icons/modeEditionBlanc.jpg" id="iconPortrait" 
+						style="width:14.87px; height:14.87px; margin-left:53px; margin-right:11.87px; display:none">
+					<p id="pIconPortrait" style="display:none"> modifier</p>
 				</div>
 			</figure>
 			<article>
@@ -52,10 +48,9 @@
 			</article>
 		</section>
 		<section id="portfolio">
-
 			<h2 id="mesProjets">Mes Projets
-				<img src="./assets/icons/modeEditionBlanc.jpg" style="width:14.87px; height:14.87px">
-				<a href="#modal1" class="js-modal"> modifier</a>
+				<img src="./assets/icons/modeEditionBlanc.jpg" id="iconModal" style="display:none">
+				<a href="#modal1" id="js-modal" class="js-modal" style="display:none"> modifier</a>
 				<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-modal="false"
 					arial-latelledby="titlemodal" style="display:none">
 					<div class="modal-wrapper  js-modal-stop">
@@ -79,7 +74,8 @@
 								</div>
 								<p class="ajoutPhoto"> Ajout photo</p>
 								<br>
-								<form  id="myForm">
+								<!-- Formulaire d'ajout de projet -->
+								<form  id="myForm" return="false">
 									<div class="card">
 										<img id="profile-pic" src=""
 											style="width:420px; height:169px; display:none; border-radius:3px">
