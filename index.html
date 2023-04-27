@@ -12,7 +12,7 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 	<link rel="stylesheet" href="./assets/modaleSophie.css">
-	<script type="module" src="works.js"></script>
+	<script  src="works.js" defer></script>
 </head>
 <body>
 	<header>
@@ -75,7 +75,7 @@
 								<p class="ajoutPhoto"> Ajout photo</p>
 								<br>
 								<!-- Formulaire d'ajout de projet -->
-								<form  id="myForm" return="false">
+								<form  id="myForm" onsubmit="return false">
 									<div class="card">
 										<img id="profile-pic" src=""
 											style="width:420px; height:169px; display:none; border-radius:3px">
@@ -177,7 +177,7 @@
 				<textarea name="message" id="message" cols="30" rows="10"></textarea>
 				<input type="submit" value="Envoyer" id="envoyer">
 			</form>
-		</section>
+		</section> 
 	</main>
 	<footer>
 		<nav>

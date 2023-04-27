@@ -75,15 +75,34 @@ function fetchWorks() {
                     modal.removeAttribute('aria-hidden', 'true');
                     modal.setAttribute('aria-modal', 'false');
                     modal.querySelector('js-modal-stop').removeListener('click', stopPropagation);
-                    modal = null;
+                    //modal = null;
                 };
+
+             //  const closeModalApresSup = function (e) {
+                 //  if (modal === null) return;
+                //   e.preventDefault;
+                  //  document.querySelectorAll('#buttonDelete').forEach(a => {
+                   //      a.addEventListener('click', closeModalApresSup);
+                  //   });
+           //   modal.style.display = "none";
+                  //  modal.removeAttribute('aria-hidden', 'true');
+                  // modal.setAttribute('aria-modal', 'false');
+                  //  modal.querySelector('js-modal-stop').removeListener('click', stopPropagation);
+                   // modal = null;
+               // }
+
+
+
 // quand on clique sur modifier pour ouvrir la modale
                 document.querySelectorAll('.js-modal').forEach(a => {
                     a.addEventListener('click', openModal);
                 });
                 // Pour fermer la modale en dehors de la modale 
                 const stopPropagation = function (e) {
-                    e.stopPropagation();
+                  //  const iconDeleteWork = document.querySelectorAll('#buttonDelete');
+                   // iconDeleteWork.setAttribute("buttonDelete", true);
+                   e.stopPropagation()
+                  //  e.stopPropagation().removeAttribute('buttonDelete');
                 }
                 // Mettre les projets dans la modale
                 const modalWorks = document.querySelector('#modalWorks');
@@ -124,6 +143,7 @@ function fetchWorks() {
                     iconeChargeImage.style.display = null;
                     ajouterPhoto.style.display = null;
                     formatImage.style.display = null;
+                    refreshModalList();
                 };
 
                 const fermerLes2 = function (e) {
@@ -189,9 +209,12 @@ function fetchWorks() {
                         },
                     })
                         .then((resp) => resp.json())
-                        .then((response) => (console.log(response)))  
-                        document.getElementById("myForm").reset();
-                    })
+                        .then((response) => genererWorksModal(response))    
+                        document.getElementById("myForm").reset(); // ça marche sauf l'image
+                        
+                        //closeModal2;
+                        
+                    },fermerLes2)  //marche pas
                 genererWorks(works);
                 deleteWork(works);
             }
@@ -203,7 +226,7 @@ function fetchWorks() {
             }
         })
 }
-//  GENERER TS LES TRAVAUX en faisant apppel à l'API
+//  GENERER tous LES TRAVAUX en faisant apppel à l'API
 function genererWorks(works) {
     console.log(works);
     // Récupération de l'élément du DOM qui accueillera les travaux
@@ -227,12 +250,13 @@ function genererWorks(works) {
 // GENERE LES TRAVAUX DANS LA MODALE
 function genererWorksModal(works) {
     //const works = await fetch ("http://localhost:5678/api/works")
-    console.log(works);
+   // console.log(works);
     // Récupération de l'élément du DOM qui accueillera les travaux
     const divGallery = document.querySelector(".modalWorks");
+    divGallery.innerHTML="";
     for (let i = 0; i < works.length; i++) {
         const work = works[i];
-        console.log(work);
+      //  console.log(work);
         // Création d’une balise dédiée à un travail : il y en a 11 en tout
         const workElement = document.createElement("article");
         workElement.className = "workElement";
@@ -252,8 +276,28 @@ function genererWorksModal(works) {
         workElement.appendChild(editer);
     };
 };
-// SUPRIMER 1 PROJET
+function refreshModalList(){
+   console.log("Bonjour");
+    fetch("http://localhost:5678/api/works")
+    .then((response) => response.json())   //retourne la réponse en json
+    .then((data) => {genererWorksModal(data),deleteWork(works)
+    }
+    )
+};
+
+
+//const iconDeleteWork = document.querySelectorAll('#buttonDelete');
+//iconDeleteWork.addEventListener(click,function(e) {
+   // e.preventDefault;
+   // deleteWork(works);
+
+//} )
+
+// SUPPRIMER 1 PROJET  : ne marche pas quand je mets la fonction refresh works
 function deleteWork(works) {
+    console.log("deleteWork");
+   
+   // delete stopPropagation;
     const iconDeleteWork = document.querySelectorAll('#buttonDelete');
     //  let id = 0;
     for (let i = 0; i < iconDeleteWork.length; i++) {
@@ -272,19 +316,55 @@ function deleteWork(works) {
                     'Authorization': `Bearer ${token}`
                 }
             })
-                .then(resp => console.log(resp))
-                .catch(error => console.log(error));
-        })
+                .then(resp => {
+                  console.log(" delete stopPropagation");
+                  //delete stopPropagation;
+                  closeModalApresSup();
+                })
+                .catch(error => console.log(error))
+                    })
+        //je ferme la modale
+       // modal=null;
+       // modal = document.querySelector(e.target.getAttribute('href'));
+       // modal.style.display = "none";
+                   // modal.removeAttribute('aria-hidden', 'true');
+                   // modal.setAttribute('aria-modal', 'false');
+                   // modal.querySelector('js-modal-stop').removeListener('click', stopPropagation);
+      
     };
-    return false;
 };
-// AJOUTER LES BOUTONS ET COULEUR DES BOUTONS
+
+
+function closeModalApresSup() {
+   // let modal = null;
+    modal = document.getElementById('js-modal'));
+                    modal.close();
+   console.log("closeModalApresSup");
+   //document.querySelectorAll('#buttonDelete') ==  document.getElementById('js-modal-close')
+   //const boutonOpenModal = document.getElementById('js-modal');
+   //boutonOpenModal.style.display = "none";
+
+    //modal = document.querySelector(getAttribute('href'));
+    //modal = document.querySelector(getAttribute('href'));
+   // modal = document.querySelector(e.target.getAttribute('href'));
+   //if (modal === null) return;
+ // e.preventDefault;
+  // document.querySelectorAll('#buttonDelete').removeEventListener('click', closeModal);
+    //modal.style.display = "none";
+   // modal.removeAttribute('aria-hidden', 'true');
+   //modal.setAttribute('aria-modal', 'false');
+   // modal.querySelector('js-modal-stop').removeListener('click', stopPropagation);
+   // modal = null;
+}
+
+
+// AJOUTER LES BOUTONS 
 function addFilterButton(works) {
-    const filters = document.querySelector(".filtres")
-    const categoryIds = works.map(work => work.categoryId)
-    const category = works.map(work => work.category)
+    const filters = document.querySelector(".filtres");
+    const categoryIds = works.map(work => work.categoryId);
+    const category = works.map(work => work.category);
     console.log(categoryIds);
-    const filtredCategoryIds = Array.from(new Set(categoryIds))
+    const filtredCategoryIds = Array.from(new Set(categoryIds));
     console.log(filtredCategoryIds);  // retourne 3 catégories donc
     const buttonAll = document.createElement('button');
     buttonAll.textContent = 'Tous';
@@ -296,14 +376,14 @@ function addFilterButton(works) {
         genererWorks(works);
         colorSelectedButton();
     })
-    buttonAll.className = "hover";  // ou  buttonAll.classList.add ('filter')
-    filters.appendChild(buttonAll); // rattache le bouton à la classe filtres
-    filtredCategoryIds.forEach(categoryId => {  // pour chaque catégorie trouvé, on crée un bouton
+    buttonAll.className = "hover";  
+    filters.appendChild(buttonAll); 
+    filtredCategoryIds.forEach(categoryId => {  
         const button = document.createElement('button');
-        button.className = "filter";  // ou  button.classList.add ('filter')
+        button.className = "filter";  
         button.setAttribute("category", categoryId);
-        button.textContent = category.find(c => c.id === categoryId).name;  // on rajoute le nom au bouton qui est dans la categoryId
-        button.addEventListener('click', (e) => {  // les boutons restent appuyés en rouge
+        button.textContent = category.find(c => c.id === categoryId).name;  
+        button.addEventListener('click', (e) => {  
             console.log(e.target.getAttribute("category"));
             idCategorySelected = e.target.getAttribute("category");
             genererWorks(works.filter(work => work.categoryId === categoryId));
@@ -312,6 +392,7 @@ function addFilterButton(works) {
         filters.appendChild(button);
     });
 };
+//COULEUR DES BOUTONS
 function colorSelectedButton() { 
     console.log(idCategorySelected);
     if (idCategorySelected !== null) {
@@ -335,6 +416,12 @@ function verif() {
         valider.className = "valider";
     }
 }
+function lambda() {
+    console.log('lambda')
+}
+
+
+
 fetchWorks();
 
 
