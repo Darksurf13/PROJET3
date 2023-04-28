@@ -3,10 +3,6 @@
    License: none (public domain)
 */
 
-
-/*rajout par moi meme  */
-
-
 #iconModal {
 	width: 14.87px;
 	height: 14.87px;
@@ -28,11 +24,11 @@ a:visited {
 	color: black;
 }
 
-.banniereConnected {
+/*.banniereConnected {
 	width: 500px;
 	height: 40px;
 	border: 3px solid red
-}
+}  */
 
 .filter {
 	color: #1D6154;
@@ -55,7 +51,7 @@ a:visited {
 	background-color: black;
 }
 
-.hover: {
+.hover {
 	color: #FFFFFF;
 	background-color: #1D6154;
 }
@@ -108,8 +104,6 @@ button :hover {
 	justify-content: center;
 	margin-left: 28px;
 	margin-right: 30px;
-	margin-top: ;
-	margin-bottom: ;
 }
 
 .objets {
@@ -143,7 +137,6 @@ button :hover {
 
 .conteneurHeaderConnected {
 	display: flex;
-	justify-content: ;
 	align-items: center;
 	width: 373px;
 	/* 20 + 12.3 + 102 + 21 + 218 = 373 */
@@ -174,7 +167,7 @@ button :hover {
 	border-radius: 60px;
 	font-size: 14px;
 	font-weight: 500;
-	font-family: Work Sans;
+	font-family: "Work Sans"; 
 }
 /* /////////////////////MODAL//////////////////////////////////////////////////////////////////////////*/
 .modal {
@@ -231,7 +224,6 @@ span,
 applet,
 object,
 iframe,
-
 h1,
 h2,
 h3,
@@ -453,7 +445,7 @@ li:hover {
 #portfolio h2 .js-modal {
 	font-size: 14px;
 	font-weight: 400;
-	font-family: Work Sans;
+	font-family: "Work Sans";
 }
 
 .gallery {
@@ -507,12 +499,10 @@ li:hover {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-
 /* page de connexion */
 #loginGras {
 	font-weight: 600;
 }
-
 
 /* Formulaire de connexion sur la page index.html */
 #connexion {
@@ -543,7 +533,6 @@ li:hover {
 	cursor: pointer;
 }
 
-
 #connexion input {
 	width: 379px;
 	height: 50px;
@@ -551,10 +540,6 @@ li:hover {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-
-/*#connexion label {
-	margin: 2em 300px 1em 0;
-} */
 
 #eMail {
 	margin: 2em 340px 1em 0;

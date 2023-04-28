@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Sophie Bluel - Architecte d'intérieur</title>
@@ -12,8 +13,9 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 	<link rel="stylesheet" href="./assets/modaleSophie.css">
-	<script  src="works.js" defer></script>
+	<script src="works.js"></script>
 </head>
+
 <body>
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
@@ -31,7 +33,7 @@
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="">
 				<div class="modifierPhoto" id="modifierPhoto">
-					<img src="./assets/icons/modeEditionBlanc.jpg" id="iconPortrait" 
+					<img src="./assets/icons/modeEditionBlanc.jpg" alt="icone modifier la photo" id="iconPortrait"
 						style="width:14.87px; height:14.87px; margin-left:53px; margin-right:11.87px; display:none">
 					<p id="pIconPortrait" style="display:none"> modifier</p>
 				</div>
@@ -49,73 +51,69 @@
 		</section>
 		<section id="portfolio">
 			<h2 id="mesProjets">Mes Projets
-				<img src="./assets/icons/modeEditionBlanc.jpg" id="iconModal" style="display:none">
-				<a href="#modal1" id="js-modal" class="js-modal" style="display:none"> modifier</a>
-				<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-modal="false"
-					arial-latelledby="titlemodal" style="display:none">
+				<img src="./assets/icons/modeEditionBlanc.jpg" alt="icone modifier les projets" id="iconModal" style="display:none">
+				<a href="#modal1" id="js-modal" class="js-modal" style="display:none"> modifier</a> 
+			</h2>
+				<!-- 1ière modale qui englobe la 2ième modale -->
+				<div id="modal1" class="modal" role="article" aria-hidden="true"  style="display:none">
 					<div class="modal-wrapper  js-modal-stop">
-						<div class="conteneurModalClose"><button id="js-modal-close" class="js-modal-close">X</button>
+						<div class="conteneurModalClose">
+							<button id="js-modal-close" class="js-modal-close"> X </button>
 						</div>
 						<p id="titlemodal"> Galerie photo </p>
-						<section id="modalWorks" class="modalWorks"></section>
+						<section id="modalWorks" class="modalWorks">
+                        </section>
 						<hr class="barre">
-						</hr>
-						<!-- -------------- 2ième modale------------------>
 						<a href="#modal2" class="js-modal2">
-							<button id="ajout" class="ajout"> Ajouter une photo</button>
+							<!-- 2ième modale --> 
+							<div id="ajout" class="ajout"> Ajouter une photo </div>
 						</a>
-						<aside id="modal2" class="modal" aria-hidden="true" role="dialog" aria-modal="false"
-							arial-latelledby="titlemodal" style="display:none">
+						<div id="modal2" class="modal" role="article" aria-hidden="true" 
+							 style="display:none">
 							<div id="modalAjout" class="modal-wrapper js-modal2-stop">
 								<div class="enteteModal2">
 									<img class="js-modal2-close"
-										src="assets/icons/Capture d’écran 2023-04-03 114824.jpg">
+										src="assets/icons/fleche.jpg" alt="fleche">
 									<button class="fermerles2"> X </button>
 								</div>
-								<p class="ajoutPhoto"> Ajout photo</p>
+								<p class="ajoutPhoto"> Ajout photo </p>
 								<br>
 								<!-- Formulaire d'ajout de projet -->
-								<form  id="myForm" onsubmit="return false">
+								<form id="myForm" onsubmit="return false">
 									<div class="card">
-										<img id="profile-pic" src=""
+										<img id="profile-pic" src="." alt="image à télécharger"
 											style="width:420px; height:169px; display:none; border-radius:3px">
 										<div class="iconeChargeImage" id="iconeChargeImage">
-											<img src="assets/icons/iconeChargeImage.jpg">
+											<img src="assets/icons/iconeChargeImage.jpg" alt="icone pour charger l'image">
 										</div>
 										<label for="input-file" class="ajouterPhoto" id="ajouterPhoto"> + Ajouter
-											photo</label>
+											photo </label>
 										<input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file"
 											style="display:none" name="image">
 										<p class="formatImage" id="formatImage">jpg, png: 4mo max</p>
-										<!-- 	</div>  -->
 									</div>
-									<label for="text" class="labelModal21">titre</label>
+									<label  class="labelModal21"> titre </label>
 									<input type="text" id="title" name="title" class="title_formulaire">
 									<br>
 									<br>
-									<label for="text" class="labelModal22">catégorie</label>
-									<!--  <input type="text" id="category" name="category" class="category_formulaire">  -->
+									<label  class="labelModal22"> catégorie </label>
 									<select name="languages" id="category" style="background-color:#FFFFFF"
 										class="title_formulaire">
-										<option value="" default=""> </option>
+										<option id="vide" class="vide" label="."> </option>
 										<option id="1" value="1">Objets</option>
 										<option id="2" value="2">Appartements</option>
 										<option id="3" value="3">Hotels & restaurants</option>
 									</select>
 									<hr class="barreModal2">
-									</hr>
 									<input type="button" value="Valider" id="valider" class="validerGris">
-									<!-- class="ajout" -->
 								</form>
 							</div>
-						</aside>
-						<!-- --------------fin 2ième modale------------------>
+						</div>
 						<p class="supprimer">Supprimer la galerie</p>
 					</div>
-				</aside>
-			</h2>
+				</div>
 			<section class="filtres">
-				<h3><!--Filtrer les travaux par catégorie --></h3>
+				<h3><!-- Filtrer les travaux par catégorie --></h3>
 				<div class="category"></div>
 			</section>
 			<div class="gallery">
@@ -177,7 +175,7 @@
 				<textarea name="message" id="message" cols="30" rows="10"></textarea>
 				<input type="submit" value="Envoyer" id="envoyer">
 			</form>
-		</section> 
+		</section>
 	</main>
 	<footer>
 		<nav>
@@ -187,4 +185,5 @@
 		</nav>
 	</footer>
 </body>
+
 </html>
