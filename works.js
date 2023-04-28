@@ -1,26 +1,19 @@
-let works = null;  // la 1ière valeur est null
+let works = null;
 let idCategorySelected = null;
 
-// FONCTION POUR SE CONNECTER A L'API
-// si j'ai le token : je suis connectée : bannère noire et boutons modifier s'affichent 
-// je remplace le login par logout, les boutons de tri disparaissent.
 function fetchWorks() {
     fetch("http://localhost:5678/api/works")
         .then((response) => response.json())
         .then((data) => {
             if (localStorage.getItem('token')) {
-                // j'affiche les icones modifier
                 const iconPortrait = document.getElementById('iconPortrait');
-                console.log('iconPortrait', iconPortrait)
-                iconPortrait.style.display = null;  //ok
+                iconPortrait.style.display = null;
                 const pIconPortrait = document.getElementById('pIconPortrait');
-                console.log('piconPortrait', pIconPortrait)
                 pIconPortrait.style.display = null;
                 const iconModal = document.getElementById('iconModal');
                 iconModal.style.display = null;
                 const jsModal = document.getElementById('js-modal');
                 jsModal.style.display = null;
-                // JE CREE LA BANNIERE NOIRE
                 const body = document.querySelector("body");
                 const banniereConnected = document.createElement('div');
                 banniereConnected.className = "headerConnected";
@@ -41,30 +34,23 @@ function fetchWorks() {
                 publierLesChangements.textContent = "publier les changements";
                 publierLesChangements.className = "publierLesChangements";
                 conteneurHeaderConnected.appendChild(publierLesChangements);
-                //Le margin-top du header une fois connecté est de 38px
                 const header = document.querySelector("header");
                 header.style.marginTop = "38px";
-                // remplace le login pour logout et changer le lien
                 const login = document.getElementById('login');
                 login.innerText = "logout";
                 login.href = "";
-                //je me déconnecte
                 login.addEventListener('click', function (e) {
                     e.preventDefault;
                     localStorage.removeItem('token');
                 })
-                // CODE POUR LA MODALE
                 let modal = null;
                 let modal2 = null;
-                // 1ière modale  
                 const openModal = function (e) {
                     e.preventDefault();
                     modal = document.querySelector(e.target.getAttribute('href'));
                     modal.style.display = null;
                     modal.removeAttribute('aria-hidden');
-                    // modal.setAttribute('aria-modal', 'true');
                     document.getElementById('js-modal-close').addEventListener('click', closeModal);
-                    //pour fermer la modale en dehors de celle-ci
                     modal.addEventListener('click', closeModal);
                     modal.querySelector('.js-modal-stop').addEventListener('click', stopPropagation);
                     refreshModalList();
@@ -77,32 +63,25 @@ function fetchWorks() {
                     modal.removeAttribute('aria-hidden', 'true');
                     refreshList()
                 };
-                // quand on clique sur modifier pour ouvrir la modale
                 document.querySelectorAll('.js-modal').forEach(a => {
                     a.addEventListener('click', openModal);
                 });
-                // Pour fermer la modale en dehors de la modale 
                 const stopPropagation = function (e) {
                     e.stopPropagation()
                 }
                 const modalWorks = document.querySelector('#modalWorks');
                 works = data;
                 genererWorksModal(works);
-                // 2ième modale
                 const openModal2 = function (e) {
                     e.preventDefault();
                     modal2 = document.getElementById('modal2');
-                    console.log(modal2);
                     modal2.style.display = null;
                     modal2.removeAttribute('aria-hidden');
                     modal2.querySelector('.fermerles2').addEventListener('click', fermerLes2);
                     modal2.querySelector('.js-modal2-stop').addEventListener('click', stopPropagation);
-                    //flèche pour revenir à la 1ière modale
                     modal2.querySelector('.js-modal2-close').addEventListener('click', closeModal2);
-                    //pour fermer la modale 2 en dehors de celle-ci
                     modal2.addEventListener('click', closeModal2);
                     modal2.querySelector('.js-modal2-stop').addEventListener('click', stopPropagation);
-                    //  changement de la couleur de valider en vert si tous les champs sont remplis
                     document.getElementById("myForm").addEventListener("change", verif);
                 };
                 const closeModal2 = function (e) {
@@ -111,9 +90,7 @@ function fetchWorks() {
                     modal2.style.display = "none";
                     modal2.removeAttribute('aria-hidden', 'true');
                     modal2 = null;
-                    // on"reset" le formulaire
                     document.getElementById("myForm").reset();
-                    // Pour que l'image se "reset" à l'ouverture de la modale 2
                     let profilePic = document.getElementById("profile-pic");
                     profilePic.src = "";
                     profilePic.style.display = "none";
@@ -131,11 +108,8 @@ function fetchWorks() {
                     modal2 = null;
                     modal.style.display = "none";
                     modal.removeAttribute('aria-hidden', 'true');
-                    // modal.setAttribute('aria-modal', 'false');
                     modal = null;
-                    // on"reset" le formulaire
                     document.getElementById("myForm").reset();
-                    // Pour que l'image se "reset" à l'ouverture de la modale 2
                     let profilePic = document.getElementById("profile-pic");
                     profilePic.src = "";
                     profilePic.style.display = "none";
@@ -144,16 +118,13 @@ function fetchWorks() {
                     formatImage.style.display = null;
                     refreshList()
                 };
-                // J'appuie sur le bouton : AJOUTER UNE PHOTO  pour accéder à la 2ieme modale
                 const ajoutPhoto = document.querySelector('.js-modal2');
                 ajoutPhoto.addEventListener('click', openModal2);
-                // pour télécharger une photo et qu'elle s'affiche
                 let profilePic = document.getElementById("profile-pic");
                 let inputFile = document.getElementById("input-file");
                 let iconeChargeImage = document.getElementById('iconeChargeImage');
                 let ajouterPhoto = document.getElementById('ajouterPhoto');
                 let formatImage = document.getElementById('formatImage');
-                // Pour que le bouton VALIDER passe au vert lorque les 3 champs sont remplis, reste gris le cas échéant
                 inputFile.onchange = function () {
                     profilePic.src = URL.createObjectURL(inputFile.files[0]);
                     console.log("image téléchargée :", profilePic.src);
@@ -162,7 +133,6 @@ function fetchWorks() {
                     ajouterPhoto.style.display = "none";
                     formatImage.style.display = "none";
                 }
-                // Envoie d'un nouveau projet
                 const button = document.getElementById('valider');
                 button.addEventListener("click", function (e) {
                     e.preventDefault();
@@ -180,7 +150,6 @@ function fetchWorks() {
                         method: 'POST',
                         body: formData,
                         headers: {
-                            // "content-Type" : "multipart/form-data": pas besoin
                             "accept": "application/json",
                             'Authorization': `Bearer ${token}`
                         },
@@ -191,7 +160,6 @@ function fetchWorks() {
                             closeModal2ApresAjout();
                         })
                     document.getElementById("myForm").reset();
-                    // Pour que l'image se "reset" à l'ouverture de la modale 2
                     let profilePic = document.getElementById("profile-pic");
                     profilePic.src = "";
                     profilePic.style.display = "none";
@@ -211,58 +179,46 @@ function fetchWorks() {
         })
 }
 
-//  GENERE tous LES TRAVAUX en faisant apppel à l'API
 function genererWorks(works) {
     console.log(works);
-    // Récupération de l'élément du DOM qui accueillera les travaux
     const divGallery = document.querySelector(".gallery");
     divGallery.innerHTML = '';
     for (let i = 0; i < works.length; i++) {
         const work = works[i];
-        // Création d’une balise dédiée à un travail : il y en a 11 en tout
         const workElement = document.createElement("article");
-        // Création des balises 
         const imageUrlElement = document.createElement("img");
         imageUrlElement.src = work.imageUrl;
         const titleElement = document.createElement("figcaption");
         titleElement.innerText = work.title;
-        // On rattache la balise work a la div gallery
         divGallery.appendChild(workElement);
         workElement.appendChild(imageUrlElement);
         workElement.appendChild(titleElement);
     }
 };
 
-// GENERE les TRAVAUX dans la modale
 function genererWorksModal(works) {
     const divGallery = document.querySelector(".modalWorks");
     divGallery.innerHTML = "";
     for (let i = 0; i < works.length; i++) {
         const work = works[i];
         console.log(work);
-        // Création d’une balise dédiée à un travail : il y en a 11 en tout
         const workElement = document.createElement("article");
         workElement.className = "workElement";
-        // Création des balises 
         const imageUrlElement = document.createElement("img");
         imageUrlElement.src = work.imageUrl;
-        // création du boutton Delete sur chaque image
         const buttonDelete = document.createElement('button');
         buttonDelete.id = "buttonDelete";
         workElement.appendChild(buttonDelete);
         const editer = document.createElement("p");
         editer.innerText = "éditer";
         editer.className = "editer";
-        // On rattache la balise work a la div gallery
         divGallery.appendChild(workElement);
         workElement.appendChild(imageUrlElement);
         workElement.appendChild(editer);
     };
 };
 
-//pour rafraichir les works de la modale
 function refreshModalList() {
-    console.log("Bonjour");
     fetch("http://localhost:5678/api/works")
         .then((response) => response.json())
         .then((data) => {
@@ -271,9 +227,7 @@ function refreshModalList() {
         )
 };
 
-// SUPPRIMER 1 PROJET 
 function deleteWork(works) {
-    console.log("deleteWork");
     const iconDeleteWork = document.querySelectorAll('#buttonDelete');
     for (let i = 0; i < iconDeleteWork.length; i++) {
         iconDeleteWork[i].addEventListener('click', function (e) {
@@ -281,7 +235,6 @@ function deleteWork(works) {
             const workId = works.map(work => work.id);
             console.log(workId);
             const id = workId[i];
-            //donne l'id du work dont je clique dessus
             console.log(id);
             const token = localStorage.getItem('token');
             fetch(`http://localhost:5678/api/works/${id}`, {
@@ -293,7 +246,6 @@ function deleteWork(works) {
                 }
             })
                 .then(resp => {
-                    console.log(" delete stopPropagation");
                     closeModalApresSup();
                     refreshList()
                 })
@@ -302,7 +254,6 @@ function deleteWork(works) {
     };
 };
 
-//pour rafraichir les works de la page index.html
 function refreshList() {
     console.log("refreshList");
     fetch("http://localhost:5678/api/works")
@@ -313,20 +264,18 @@ function refreshList() {
         )
 };
 
-//ferme la 2ième modale après ajout d'un projet
 function closeModal2ApresAjout() {
     modal2 = document.getElementById('modal2');
     modal2.style.display = "none";
     refreshModalList()
 }
-//ferme la 1ière modale après suppression d'un projet
+
 function closeModalApresSup() {
     modal = document.getElementById('modal1');
     modal.style.display = "none";
     genererWorks(works)
 }
 
-// AJOUTER les BOUTONS de tri dans la page index.html
 function addFilterButton(works) {
     const filters = document.querySelector(".filtres");
     const categoryIds = works.map(work => work.categoryId);
@@ -361,7 +310,6 @@ function addFilterButton(works) {
     });
 };
 
-//COULEUR des BOUTONS de TRI
 function colorSelectedButton() {
     console.log(idCategorySelected);
     if (idCategorySelected !== null) {
@@ -370,16 +318,12 @@ function colorSelectedButton() {
     }
 };
 
-// pour que le bouton vérifier passe au vert quand les 3 champs sont remplis, il reste gris le cas échéant
 function verif() {
     let inputFile = document.getElementById("input-file");
     const image = inputFile.files[0];
     const title = document.getElementById("title").value;
-    //faut que ce soit entre 1 et 3
     const category = document.getElementById("category").value;
     const valider = document.getElementById('valider');
-    // si au moins 1 des champs est  vide : valider est en gris, vert le cas échéant lors
-    //du chargement de la modale 2  !!!!
     if (image == undefined || title == '' || category == '') {
         valider.className = "validerGris";
     }
